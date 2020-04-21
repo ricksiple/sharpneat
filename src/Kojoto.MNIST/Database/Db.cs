@@ -20,22 +20,7 @@ namespace Kojoto.MNIST.Database
         {
             _ImageFile = imageFile;
             _LabelFile = labelFile;
-        }
 
-        public int Count
-        {
-            get
-            {
-                return _Labels.Count;
-            }
-        }
-
-        #region IEnumerable<IRecord>
-
-        // IEnumerable<IRecord>
-
-        IEnumerator<IRecord> IEnumerable<IRecord>.GetEnumerator()
-        {
             _Labels = new Labels(_LabelFile);
             _Images = new Images(_ImageFile);
 
@@ -46,13 +31,36 @@ namespace Kojoto.MNIST.Database
             {
                 throw new InvalidDataException(string.Format("Label count {0} does not match image count {1}.", _Labels.Count, _Images.Count));
             }
+        }
 
+        public int ImageCount
+        {
+            get
+            {
+                return _Images.Count;
+            }
+        }
+
+        public int PixelCount
+        {
+            get
+            {
+                return _Images.PixelCount;
+            }
+        }
+
+        #region IEnumerable<IRecord>
+
+        // IEnumerable<IRecord>
+
+        IEnumerator<IRecord> IEnumerable<IRecord>.GetEnumerator()
+        {
             return this;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<IRecord>)this).GetEnumerator();
+            return this;
         }
 
         #endregion
@@ -84,13 +92,13 @@ namespace Kojoto.MNIST.Database
 
             if (labelEOF != imageEOF)
             {
-                if (labelEOF) 
-                { 
-                    throw new InvalidDataException("EOF in label file, but not in image file."); 
-                } 
-                else 
-                { 
-                    throw new InvalidDataException("EOF in iamge file, but not in label file."); 
+                if (labelEOF)
+                {
+                    throw new InvalidDataException("EOF in label file, but not in image file.");
+                }
+                else
+                {
+                    throw new InvalidDataException("EOF in iamge file, but not in label file.");
                 }
             }
 

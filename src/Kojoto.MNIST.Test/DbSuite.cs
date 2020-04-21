@@ -17,7 +17,8 @@ namespace Kojoto.MNIST.Test
 
             var en = ((IEnumerable<IRecord>)db).GetEnumerator();
 
-            Assert.AreEqual(10000, db.Count);
+            Assert.AreEqual(10000, db.ImageCount);
+            Assert.AreEqual(784, db.PixelCount);
 
             var count = 0;
 

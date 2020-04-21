@@ -16,7 +16,6 @@ namespace Kojoto.MNIST.Database
         private byte[] _value;
         private int _rows;
         private int _cols;
-        private int _pixels;
 
         private const int _MAGIC_NUMBER = 2051;
 
@@ -26,7 +25,8 @@ namespace Kojoto.MNIST.Database
         }
 
         public int Count { get; private set; } = 0;
-
+        public int PixelCount { get; private set; } = 0;
+        
         #region IEnumerable<byte>
 
         // IEnumerable<byte> 
@@ -53,7 +53,7 @@ namespace Kojoto.MNIST.Database
             _cols = System.BitConverter.ToInt32(_reader.ReadBytes(4).Reverse<byte>().ToArray<byte>(), 0);
 
             // store pixel count per image
-            _pixels = _rows * _cols;
+            PixelCount = _rows * _cols;
 
             // return enumerator
             return this;
@@ -73,8 +73,8 @@ namespace Kojoto.MNIST.Database
 
         bool IEnumerator.MoveNext()
         {
-            _value = _reader.ReadBytes(_pixels);
-            return _value.Length == _pixels;
+            _value = _reader.ReadBytes(PixelCount);
+            return _value.Length == PixelCount;
         }
 
         void IEnumerator.Reset()

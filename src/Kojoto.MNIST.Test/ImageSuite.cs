@@ -15,18 +15,19 @@ namespace Kojoto.MNIST.Test
         {
             var fi = new FileInfo("t10k-images.idx3-ubyte");
 
-            var lbls = new Images(fi);
+            var imgs = new Images(fi);
 
-            var en = ((IEnumerable<byte[]>)lbls).GetEnumerator();
+            var en = ((IEnumerable<byte[]>)imgs).GetEnumerator();
 
-            Assert.AreEqual(10000, lbls.Count);
+            Assert.AreEqual(10000, imgs.Count);
+            Assert.AreEqual(784, imgs.PixelCount);
 
             int count = 0;
 
             while (en.MoveNext())
             {
                 count += 1;
-                Assert.AreEqual(784, en.Current.Length);
+                Assert.AreEqual<int>(784, en.Current.Length,string.Format("Incorrect length for image {0}.", count));
                 Assert.IsTrue(count <= 10000);
             }
 

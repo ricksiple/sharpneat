@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpNeatDomainsExtra", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficacySampler", "EfficacySampler\EfficacySampler.csproj", "{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XorTest", "XorTest\XorTest.csproj", "{56441F20-23FB-416C-8F3D-B01D70C484FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kojoto.Xor", "Kojoto.Xor\Kojoto.Xor.csproj", "{56441F20-23FB-416C-8F3D-B01D70C484FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

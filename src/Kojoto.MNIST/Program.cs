@@ -17,12 +17,10 @@ namespace Kojoto.MNIST
             const string complexityRegulationStr = "Absolute";
             const int complexityThreshold = 10;
 
-            // Create IBlackBox evaluator.
-            //double[,] expected = new double[10, 10];
-            //byte[,] images = new byte[10, 784];
-            //var evaluator = new FitnessEvaluator(expected, images);
-
             var evaluator = FitnessEvaluator.Create();
+            // NOTE:
+            // maximum achievable fitness score on any given sample is 10.
+            // the maximum overall fitness score is, therefore, 10 times the number of samples.
 
             var activationScheme = SharpNeat.Decoders.NetworkActivationScheme.CreateAcyclicScheme();
 

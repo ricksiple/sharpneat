@@ -18,11 +18,6 @@ namespace Kojoto.MNIST
     {
         private ParallelOptions _ParallelOptions = new ParallelOptions();
 
-        private DateTime _StartTime;
-        private DateTime _LastUpdate;
-        private double _StartPct;
-        private Action<uint, double> _UpdateEvent;
-
         public MNISTExperiment()
         {
             _UpdateEvent = _FirstUpdateEvent;
@@ -62,12 +57,21 @@ namespace Kojoto.MNIST
             _UpdateEvent(currentGeneration, maxFitness);
         }
 
+        #region UpdateEvent
+
+        private DateTime _StartTime;
+        private DateTime _LastUpdate;
+        private double _StartFitness;
+        private double _LastFitness;
+        private Action<uint, double> _UpdateEvent;
+
         private void _FirstUpdateEvent(uint currentGeneration, double maxFitness)
         {
             _StartTime = DateTime.Now;
             _LastUpdate = DateTime.Now;
 
-            Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N0}", currentGeneration, maxFitness));
+            // don't write out generation 0
+            //Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N0}", currentGeneration, maxFitness));
 
             _UpdateEvent = _SecondUpdateEvent;
         }
@@ -75,7 +79,8 @@ namespace Kojoto.MNIST
         private void _SecondUpdateEvent(uint currentGeneration, double maxFitness)
         {
             _LastUpdate = DateTime.Now;
-            _StartPct = maxFitness / 600000.0;
+            _StartFitness = maxFitness;
+            _LastFitness = maxFitness;
 
             Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N0}", currentGeneration, maxFitness));
 
@@ -88,21 +93,26 @@ namespace Kojoto.MNIST
             TimeSpan total = DateTime.Now - _StartTime;
 
             double pct = maxFitness / 600000.0;
-            double deltaPct = pct - _StartPct;
-            double remainPct = 100 - pct;
+            double deltaFitness = maxFitness - _StartFitness;
+            double remainFitness = 600000 - maxFitness;
 
-            TimeSpan remainTime = new TimeSpan((long)(remainPct * (double)total.Ticks / deltaPct));
+            TimeSpan remainTime = new TimeSpan((long)(remainFitness * (double)total.Ticks / deltaFitness));
 
-            Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N0} percent={2:P1} lastTime={3} totalTime={4} remainTime={5}"
+            Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N0}{6} percent={2:P1} lastTime={3} totalTime={4} remainTime={5}"
                 , currentGeneration
                 , maxFitness
                 , pct
                 , last.ToString(@"d\.hh\:mm\:ss")
                 , total.ToString(@"d\.hh\:mm\:ss")
                 , remainTime.ToString(@"d\.hh\:mm\:ss")
+                , (maxFitness - _LastFitness).ToString("+#;-#;+0")
                 ));
 
             _LastUpdate = DateTime.Now;
+            _LastFitness = maxFitness;
         }
+
+        #endregion
+
     }
 }

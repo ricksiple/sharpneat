@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Xml;
+using System.IO;
+
+using System.Diagnostics;
 
 using SharpNeat.Core;
 using SharpNeat.Decoders;
@@ -17,15 +21,13 @@ namespace Kojoto.MNIST
     public abstract class Experiment
     {
         // settings
-        //private const int _SpecieCount = 10;
-        private const int _SpecieCount = 2;
+        private const int _SpecieCount = 10;
         private const int _InputCount = 784;
         private const int _OutputCount = 10;
-        //private const int _PopulationSize = 150;
-        private const int _PopulationSize = 20;
+        private const int _PopulationSize = 150;
         private const string _ComplexityRegulationStr = "Absolute";
         private const int _ComplexityThreshold = 10;
-
+        private const string _GenomeFile = "Genomes.xml";
 
         private NetworkActivationScheme _NetworkActivationScheme;
         private NeatGenomeDecoder _GenomeDecoder;
@@ -42,6 +44,7 @@ namespace Kojoto.MNIST
 
         public void StartContinue()
         {
+            GetEvolutionAlgorithm();
             _EvolutionAlgorithm.StartContinue();
         }
 
@@ -75,16 +78,47 @@ namespace Kojoto.MNIST
             GetGenomeDecoder();
             GetGenomeParameters();
             GetGenomeFactory();
-            GetGenomeList();
             GetParallelOptions();
             GetGenomeListEvaluator();
             GetSpeciationStrategy();
             GetComplexityRegulationStrategy();
             GetEvolutionAlgorithmParameters();
-            GetEvolutionAlgorithm();
         }
 
         #endregion
+
+        public void LoadPopulation()
+        {
+            Debug.Assert(_GenomeFactory != null);
+
+            var fi = new FileInfo(_GenomeFile);
+
+            if (fi.Exists)
+            {
+                using (XmlReader xr = XmlReader.Create(_GenomeFile))
+                {
+                    _GenomeList = NeatGenomeXmlIO.ReadCompleteGenomeList(xr, false, _GenomeFactory);
+                }
+            }
+            else
+            {
+                _GenomeList = _GenomeFactory.CreateGenomeList(_PopulationSize, 0);
+            }
+
+        }
+
+        public void SavePopulation()
+        {
+            Debug.Assert(_GenomeList != null);
+
+            XmlWriterSettings xwSettings = new XmlWriterSettings();
+            xwSettings.Indent = true;
+            using (XmlWriter xw = XmlWriter.Create(_GenomeFile, xwSettings))
+            {
+                NeatGenomeXmlIO.WriteComplete(xw, _GenomeList, false);
+            }
+
+        }
 
         private void GetPhenomeEvaluator()
         {
@@ -111,11 +145,6 @@ namespace Kojoto.MNIST
         private void GetGenomeFactory()
         {
             _GenomeFactory = new NeatGenomeFactory(_InputCount, _OutputCount, _GenomeParameters);
-        }
-
-        private void GetGenomeList()
-        {
-            _GenomeList = _GenomeFactory.CreateGenomeList(_PopulationSize, 0);
         }
 
         private void GetParallelOptions()

@@ -10,9 +10,16 @@ namespace Kojoto.MNIST
         static void Main(string[] args)
         {
             MNISTExperiment exp = new MNISTExperiment();
+            
+            exp.LoadPopulation();
             exp.StartContinue();
+
             Console.WriteLine("Press <ENTER> to stop...");
             Console.ReadLine();
+
+            exp.RequestPauseAndWait();
+            exp.SavePopulation();
+            
             Console.WriteLine("Press <ENTER> to exit...");
             Console.ReadLine();
         }

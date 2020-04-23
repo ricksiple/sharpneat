@@ -1,0 +1,3 @@
+﻿To Do:
+- Change remaining time computation to use fitness score instead of %.
+- Implement saving/loading genomes

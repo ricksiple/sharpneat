@@ -71,13 +71,10 @@ namespace Kojoto.MNIST
             return new FitnessInfo(totalScore, totalScore);
         }
 
-        public static FitnessEvaluator Create()
+        public static FitnessEvaluator Create(FileInfo labelFile, FileInfo imageFile)
         {
             byte[,] images;
             double[,] expected;
-
-            var labelFile = new FileInfo("t10k-labels.idx1-ubyte");
-            var imageFile = new FileInfo("t10k-images.idx3-ubyte");
 
             var src = new Database.Db(imageFile, labelFile);
             images = new byte[src.ImageCount, src.PixelCount];

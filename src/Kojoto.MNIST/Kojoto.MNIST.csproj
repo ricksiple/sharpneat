@@ -46,7 +46,9 @@
     <Compile Include="Database\Db.cs" />
     <Compile Include="Database\Images.cs" />
     <Compile Include="Database\Labels.cs" />
+    <Compile Include="Experiment.cs" />
     <Compile Include="FitnessEvaluator.cs" />
+    <Compile Include="MNISTExperiment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +58,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="t10k-labels.idx1-ubyte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="train-images.idx3-ubyte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="train-labels.idx1-ubyte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

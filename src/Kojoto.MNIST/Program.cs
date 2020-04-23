@@ -1,14 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Kojoto.MNIST
 {
     class Program
     {
+
         static void Main(string[] args)
+        {
+            MNISTExperiment exp = new MNISTExperiment();
+            exp.StartContinue();
+            Console.WriteLine("Press <ENTER> to stop...");
+            Console.ReadLine();
+            Console.WriteLine("Press <ENTER> to exit...");
+            Console.ReadLine();
+        }
+
+        static void MainOld(string[] args)
         {
             const int specieCount = 10;
             const int inputCount = 784;
@@ -17,7 +26,9 @@ namespace Kojoto.MNIST
             const string complexityRegulationStr = "Absolute";
             const int complexityThreshold = 10;
 
-            var evaluator = FitnessEvaluator.Create();
+            var labelFile = new FileInfo("t10k-labels.idx1-ubyte");
+            var imageFile = new FileInfo("t10k-images.idx3-ubyte");
+            var evaluator = FitnessEvaluator.Create(labelFile, imageFile);
             // NOTE:
             // maximum achievable fitness score on any given sample is 10.
             // the maximum overall fitness score is, therefore, 10 times the number of samples.

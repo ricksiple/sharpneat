@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpNeatDomainsExtra", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficacySampler", "EfficacySampler\EfficacySampler.csproj", "{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kojoto.Xor", "Kojoto.Xor\Kojoto.Xor.csproj", "{56441F20-23FB-416C-8F3D-B01D70C484FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kojoto.MNIST", "Kojoto.MNIST\Kojoto.MNIST.csproj", "{6B74D031-A1AC-4077-A9E1-552BF6DCAB01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kojoto.MNIST.Test", "Kojoto.MNIST.Test\Kojoto.MNIST.Test.csproj", "{D4E069B8-BE98-488C-83A2-8238D87D3A91}"
@@ -116,18 +114,6 @@ Global
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|x86.ActiveCfg = Release|Any CPU
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|x86.Build.0 = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Debug|x86.Build.0 = Debug|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|x86.ActiveCfg = Release|Any CPU
-		{56441F20-23FB-416C-8F3D-B01D70C484FB}.Release|x86.Build.0 = Release|Any CPU
 		{6B74D031-A1AC-4077-A9E1-552BF6DCAB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B74D031-A1AC-4077-A9E1-552BF6DCAB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B74D031-A1AC-4077-A9E1-552BF6DCAB01}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

@@ -38,7 +38,7 @@ namespace Kojoto.MNIST
 
         protected override IActivationFunction ActivationFunction()
         {
-            return BipolarSigmoid.__DefaultInstance;
+            return LeakyReLU.__DefaultInstance;
         }
 
         protected override ParallelOptions ParallelOptions()
